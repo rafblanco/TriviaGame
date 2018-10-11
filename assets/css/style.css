@@ -1,0 +1,43 @@
+body, html {
+    background-image: url("../images/steve-carrell.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-style: normal;
+    font-weight: 600;
+    color: white;
+    text-shadow: .5px .5px black;
+}
+
+#main-section {
+    margin: 40px auto;
+    padding: 10px;
+    width: 60%;
+    height: 500px;
+    background-color: rgba(128, 128, 128, 0.589);
+    text-align: center;
+}
+#questionaire, #timer, #choices{
+    line-height: 24px;
+}
+
+h1 {
+    font-size: 40px;
+    margin: 20px;
+}
+
+button {
+    width:200px;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 5px;
+    background: rgb(221, 221, 221);
+    border-radius: 4px;
+    margin-top: 20px;
+}
+.options:hover {
+
+    color: black;
+    background: rgb(221, 221, 221);
+    border-radius: 4px;
+}
