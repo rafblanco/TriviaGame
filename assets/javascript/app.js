@@ -43,30 +43,22 @@ $(document).ready(function () {
 
     //Initialize function that will have a start button 
     function initialize() {
-        $("#choices").html("<button id='start-btn'> Start Game </button>");
+        $("#begin-btn").html("<button id='start-btn'> START GAME </button>");
 
     }
 
     $(document).on("click", "#start-btn", function () {
-        $("#choices").empty();
+        $("#begin-btn").empty();
         newQuestion();
         timer();
 
 
     });
-    // $("#start-btn").on("click", function () {
-    //     // Start timer function
-    //     // First Question and answer
-    //     // hide button 
-    //     //
-
-    //     console.log(triviaQs[index].question);
-    // });
 
     $(document).on("click", ".options", function () {
         stop();
         //Increments to the next question
-        //if (answer == correct)
+        
         if ($(this).text() === triviaQs[index].answer) {
             correct++;
             $("#questionaire").html("Correct!");
@@ -77,9 +69,9 @@ $(document).ready(function () {
             if (index === 6) {
                 
                 //Call the final score function 
-                setTimeout(finalScore, 5000);
+                setTimeout(finalScore, 3000);
             } else {
-            setTimeout(newQuestion, 5000);
+            setTimeout(newQuestion, 3000);
             }
         }
         // else(answer == wrong)
@@ -89,13 +81,14 @@ $(document).ready(function () {
             //html the choices shows gif
             var wrongText = $("<p>").text("The Correct Answer was: " + triviaQs[index].answer);
             var wrongGif = $("<img>").attr("src", "assets/images/dwight-false.gif");
-            $("#choices").html(wrongText, wrongGif);
+            $("#choices").html(wrongText);
+            $("#choices").append(wrongGif);
             index++;
             if (index === 6) {
                 //Call the final score function 
-                setTimeout(finalScore, 5000);
+                setTimeout(finalScore, 3000);
             } else{
-            setTimeout(newQuestion, 5000);
+            setTimeout(newQuestion, 3000);
             }
         }
     });
@@ -123,7 +116,7 @@ $(document).ready(function () {
 
     function reset() {
         // sets the count back to 30
-        count === 30;
+        count= 30;
     }
 
     function stop() {
@@ -135,9 +128,14 @@ $(document).ready(function () {
         if (count === 0) {
             stop();
             unanswered++;
-            index++;
+            
             // show the correct answer and gif
-            setTimeout(newQuestion, 5000);
+            var noAnswer = $("<p>").text("The Correct Answer was: " + triviaQs[index].answer);
+            var sleepingGif = $("<img>").attr("src", "assets/images/sleeping-stanley.gif");
+            $("#choices").html(noAnswer);
+            $("#choices").append(sleepingGif);
+            index++;
+            setTimeout(newQuestion, 3000);
         } else {
             $("#timer").html("Time Remaining: " + count + " seconds");
         }
@@ -151,17 +149,17 @@ $(document).ready(function () {
         correct = 0;
         unanswered = 0;
         newQuestion();
-
     });
 
     function finalScore() {
+        $("#questionaire").empty();
         $("#choices").empty();
         var correctAns = $("<p>").text("Number of correct answers: " + correct);
         var incorrectAns = $("<p>").text("Number of incorrect answers: " + incorrect);
         var unansweredText = $("<p>").text("Number of unanswered: " + unanswered);
 
-        $("#choices").html(correctAns, incorrectAns, unansweredText);
-        index === 0;
+        $("#choices").append(correctAns, incorrectAns, unansweredText);
+        index =0;
         $("#choices").append("<button id='restart'> Start Over? </button>");
 
     }
